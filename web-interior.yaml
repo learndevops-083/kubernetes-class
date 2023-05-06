@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: web-interior
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: web-interior
