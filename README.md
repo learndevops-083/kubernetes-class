@@ -7,9 +7,12 @@ Set up a Git repository: Create a new Git repository or use an existing one to s
 Install Flux: Flux is a popular GitOps tool that synchronizes your Kubernetes cluster with your Git repository. Install Flux on your cluster using the following command:
 
 ```
+kubectl create namespace fluxcd
+```
+```
 helm repo add fluxcd https://charts.fluxcd.io
 helm upgrade -i flux fluxcd/flux --namespace fluxcd \
---set git.url=<your-git-repo-url> \
+--set git.url=https://github.com/learndevops-083/kubernetes-gitops-lab.git \
 --set git.path=kubernetes \
 --set git.pollInterval=1m \
 --set syncGarbageCollection.enabled=true \
@@ -23,7 +26,7 @@ This command installs Flux in the fluxcd namespace and configures it to sync you
 Configure Flux: To allow Flux to access your Git repository, you need to configure a deploy key or a personal access token (PAT). In this lab, we'll use a deploy key. Generate a deploy key using the following command:
 
 ```
-ssh-keygen -t rsa -b 4096 -C "flux" -N "" -f ./flux
+  ssh-keygen -t rsa -b 4096 -C "flux" -N "" -f ./flux
 ```
 This command generates a new SSH key pair named flux in the current directory. The -C option sets the comment field of the public key to "flux".
 
