@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+ kind: DaemonSet
+ metadata:
+ name: wazuh-agent
+ spec:
+ selector:
+ matchLabels:
+ app: wazuh-agent
+ template:
+ metadata:
+ labels:
+ app: wazuh-agent
+ spec:
+ containers:
+ - name: wazuh-agent
+ image: wazuh/wazuh-agent:latest
+ env:
+ - name: MANAGER_IP
+ value: "<WAZUH_MANAGER_IP>"
+ ports:
+ - containerPort: 1514
