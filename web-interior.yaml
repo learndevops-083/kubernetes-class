@@ -26,9 +26,9 @@ metadata:
 spec:
   selector:
     app: web-interior
-  type: NodePort
+  type: LoadBalancer
   ports:
     - name: http
       port: 80
       targetPort: 80
-      nodePort: 30200
+      #nodePort: 30200
